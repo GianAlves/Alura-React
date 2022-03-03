@@ -15,7 +15,6 @@ class App extends Component {
         this.notas = new ArrayDeNotas();
     }
 
-
     render() {
         return (
             <section className="conteudo">
@@ -24,7 +23,7 @@ class App extends Component {
                     criarNota={this.notas.adicionarNota}
                  />
                 <main className='conteudo-principal'>
-                    <ListaDeCategorias adicionarCategoria={this.categorias.adicionarCategoria} categorias={this.categorias.categorias} />
+                    <ListaDeCategorias adicionarCategoria={this.categorias.adicionarCategoria.bind(this.categorias)} categorias={this.categorias} />
                     <ListaDeNotas apagarNota={this.notas.apagarNota} notas={this.notas.notas}/>
                 </main>
             </section>
