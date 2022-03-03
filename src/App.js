@@ -4,48 +4,28 @@ import ListaDeNotas from './components/ListaDeNotas/index.js';
 import './assets/App.css';
 import './assets/index.css';
 import ListaDeCategorias from './components/ListaDeCategorias/index.js';
+import Categoria from './components/dados/Categorias.js';
+import ArrayDeNotas from './components/dados/Notas.js';
 class App extends Component {
 
     constructor() {
         // @ts-ignore
         super();
-        this.state = {
-            notas: [],
-            categorias: ["Games", "Música"],
-        };
+        this.categorias = new Categoria();
+        this.notas = new ArrayDeNotas();
     }
 
-    criarNota(titulo, texto, categoria){
-        const novaNota = {titulo, texto, categoria};
-        const novoArrayNotas = [...this.state.notas, novaNota];
-        const novoEstado = {
-            notas: novoArrayNotas
-        }
-        this.setState(novoEstado);
-    }
-
-    adicionarCategoria(valorCategoria){
-        const novoArrayCategoria = [...this.state.categorias, valorCategoria];
-        const novoEstado = {...this.state, categorias:novoArrayCategoria};
-        this.setState(novoEstado);
-    }
-
-    apagarNota(index){
-        let arraynotas = this.state.notas;
-        arraynotas.splice(index,1);
-        this.setState({notas: arraynotas});
-    }
 
     render() {
         return (
             <section className="conteudo">
                 <FormularioCadastro 
-                    categorias={this.state.categorias}
-                    criarNota={this.criarNota.bind(this)}
+                    categorias={this.categorias.categorias}
+                    criarNota={this.notas.adicionarNota}
                  />
                 <main className='conteudo-principal'>
-                    <ListaDeCategorias adicionarCategoria={this.adicionarCategoria.bind(this)} categorias={this.state.categorias} />
-                    <ListaDeNotas apagarNota={this.apagarNota.bind(this)} notas={this.state.notas}/>
+                    <ListaDeCategorias adicionarCategoria={this.categorias.adicionarCategoria} categorias={this.categorias.categorias} />
+                    <ListaDeNotas apagarNota={this.notas.apagarNota} notas={this.notas.notas}/>
                 </main>
             </section>
         );
