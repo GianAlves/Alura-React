@@ -17,6 +17,7 @@ class CardNota extends Component {
                     {/* Utilizando svg como img ou como um component... */}
                     {/* <img src={deleteSvg} alt="Delete" /> */}
                     <DeleteSvg onClick={this.apagar.bind(this) }/>
+                    <h4>{this.props.categoria}</h4>
                 </header>
                 <p className='card-nota_texto'>{this.props.texto}</p>
             </section>
