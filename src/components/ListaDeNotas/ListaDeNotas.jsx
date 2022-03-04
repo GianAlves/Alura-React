@@ -8,10 +8,15 @@ export default class ListaDeNotas extends Component {
         // @ts-ignore
         super();
         this.state = {notas:[]};
+        this._novasNotas = this._novasNotas.bind(this);
     }
 
     componentDidMount(){
-        this.props.notas.inscrever(this._novasNotas.bind(this));
+        this.props.notas.inscrever(this._novasNotas);
+    }
+
+    componentWillUnmount(){
+        this.props.categorias.desinscrever(this._novasNotas);
     }
 
     _novasNotas(notas){
